@@ -1,15 +1,14 @@
 <template>
   <nav class="navbar navbar--black pd-10px" role="navigation" aria-label="main navigation" >
     <div class="navbar-brand">
-      <router-link to="/" class="navbar-item">
+      <a class="navbar-item" href="transfer">
         <img alt="Vue logo" src="@/assets/logo.png">
         <h1 class="title cl-white">Somchoic</h1>
-      </router-link>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
       </a>
+    </div>
+    <div class="navbar-start">
+      <router-link to="/transfer" class="navbar-item title is-5 is-marginless">Transfer</router-link>
+      <router-link to="/trade" class="navbar-item title is-5">Trade</router-link>
     </div>
     <div class="navbar-end">
       <span class="navbar-item title cl-white">0 SC</span>

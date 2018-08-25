@@ -1,5 +1,5 @@
 import abi from './abi.json'
 export default {
   abi: abi,
-  address: '0xE88e2435CF769B928c70f06b3292330bCbD3d450'
+  address: '0x0cdfbC021DCC4e35Df39a1e2a267fcF5a8daFad3'
 }

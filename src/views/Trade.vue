@@ -42,16 +42,26 @@
         </div>
       </div>
     </section>
+    <b-modal :active.sync="isShowTransaction" @close="hideTradeModal">
+      <modalTrade :hash="hash" :confirmation="confirmation"/>
+    </b-modal>
   </div>
 </template>
 
 <script>
+import modalTrade from '../components/modalTrade'
 import bn from '../utils'
 export default {
+  components: {
+    modalTrade
+  },
   data () {
     return {
-      buySOMC: '',
-      sellSOMC: ''
+      buySOMC: '0.001',
+      sellSOMC: '',
+      isShowTransaction: false,
+      confirmation: '',
+      hash: ''
     }
   },
   computed: {
@@ -63,9 +73,31 @@ export default {
     }
   },
   methods: {
+    showTradeModal (hash) {
+      this.hash = hash
+      this.isShowTransaction = true
+    },
+    hideTradeModal () {
+      this.hash = ''
+      this.isShowTransaction = false
+      this.confirmation = ''
+    },
     buyToken (amount) {
       const value = bn.toWei(amount)
       this.$contract.methods.buyToken().send({ from: this.$web3.eth.defaultAccount, value })
+        .on('transactionHash', (hash) => {
+          this.showTradeModal(hash)
+          this.confirmation = 'loading'
+        })
+        .on('confirmation', (confirmationNumber, receipt) => {
+          if (confirmationNumber === 1) {
+            this.confirmation = 'success'
+            this.$emit('getBalance')
+          }
+        })
+        .on('error', () => {
+          this.confirmation = 'fail'
+        })
     },
     sellToken (amount) {
       const value = bn.toWei(amount)

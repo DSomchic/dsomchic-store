@@ -12,6 +12,7 @@
     "bignumber.js": "^7.2.1",
     "buefy": "^0.6.6",
     "vue": "^2.5.17",
+    "vue-clipboard2": "^0.2.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "web3": "^1.0.0-beta.35",

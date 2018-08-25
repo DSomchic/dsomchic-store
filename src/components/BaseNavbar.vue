@@ -12,10 +12,20 @@
       </a>
     </div>
     <div class="navbar-end">
-      <span class="navbar-item title cl-white">0 SC</span>
+      <span class="navbar-item title cl-white">{{balance}} SC</span>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  props: {
+    balance: {
+      type: [String, Number]
+    }
+  }
+}
+</script>
 
 <style scoped>
 .navbar--black {

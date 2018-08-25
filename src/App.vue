@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <base-navbar :balance="balance"></base-navbar>
-    <button class="button" @click="buyToken(0.001)">buy 0.001eth</button>
+    <!-- <button class="button" @click="buyToken(0.001)">buy 0.001eth</button> -->
     <router-view/>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: { BaseNavbar },
   data () {
     return {
-      balance: '-'
+      balance: '0'
     }
   },
   async created () {
@@ -27,11 +27,11 @@ export default {
       console.log(err)
     }
   },
-  methods: {
-    buyToken (amount) {
-      const value = bn.toWei(amount)
-      this.$contract.methods.buyToken().send({ from: this.$web3.eth.defaultAccount, value })
-    }
-  }
+  // methods: {
+  //   buyToken (amount) {
+  //     const value = bn.toWei(amount)
+  //     this.$contract.methods.buyToken().send({ from: this.$web3.eth.defaultAccount, value })
+  //   }
+  // }
 }
 </script>

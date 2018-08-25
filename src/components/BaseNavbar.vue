@@ -8,7 +8,7 @@
     </div>
     <div class="navbar-start">
       <router-link to="/transfer" class="navbar-item title is-5 is-marginless">Transfer</router-link>
-      <router-link to="/trade" class="navbar-item title is-5">Trade</router-link>
+      <router-link to="/trade" class="navbar-item title is-5">Exchange</router-link>
     </div>
     <div class="navbar-start hover">
       <span v-if="address"
@@ -22,7 +22,7 @@
       <span v-else class="navbar-item title is-6 cl-white cs-pointer"  >Loading...</span>
     </div>
     <div class="navbar-end">
-      <span class="navbar-item title cl-white">{{parseFloat(balance).toFixed(3)}} SOMC</span>
+      <!-- <span class="navbar-item title cl-white">{{parseFloat(balance).toFixed(3)}} SOMC</span> -->
     </div>
   </nav>
 </template>
@@ -30,9 +30,6 @@
 <script>
 export default {
   props: {
-    balance: {
-      type: [String, Number]
-    },
     address: {
       type: String
     }

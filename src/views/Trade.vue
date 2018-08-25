@@ -24,7 +24,10 @@
           </div>
         </div>
         <div class="column">
-          <div class="f-left w-100pct pd-20px t-al-center">
+          <div class="f-left w-100pct pd-20px t-al-center dp-none-tablet">
+            <img src="../assets/swap.png" width="50px" class="cs-pointer" @click="switchToken()">
+          </div>
+          <div class="f-left w-100pct pd-20px t-al-center rotation dp-none-mobile">
             <img src="../assets/swap.png" width="50px" class="cs-pointer" @click="switchToken()">
           </div>
         </div>
@@ -72,6 +75,18 @@ export default {
     },
     somcBalance: {
       type: [String, Number]
+    }
+  },
+  watch: {
+    ethBalance (newVal, oldVal) {
+      if (oldVal === '' && this.tokenETH.balance === '') {
+        this.tokenETH.balance = newVal
+      }
+    },
+    somcBalance (newVal, oldVal) {
+      if (oldVal === '' && this.tokenSOMC.balance === '') {
+        this.tokenSOMC.balance = newVal
+      }
     }
   },
   data () {
@@ -145,4 +160,9 @@ export default {
 .shadow {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
+
+.rotation {
+  transform: rotate(90deg);
+}
+
 </style>

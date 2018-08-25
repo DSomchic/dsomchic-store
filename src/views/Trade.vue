@@ -52,6 +52,9 @@
       <div v-if="tokenETH.code === 'ETH'" class="button is-primary f-left w-100pct h-50px f-s-21px" @click="buyToken(tokenETH.amount)">BUY</div>
       <div v-if="tokenETH.code === 'SOMC'" class="button is-primary f-left w-100pct h-50px f-s-21px" @click="sellToken(tokenSOMC.amount)">SELL</div>
     </div>
+    <b-modal :active.sync="isShowTransaction" @close="hideTradeModal">
+      <modalTrade :hash="hash" :confirmation="confirmation" :message="'1 ETH = 10,000 SOMC'"/>
+    </b-modal>
   </div>
 </template>
 

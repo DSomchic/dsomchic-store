@@ -19,6 +19,9 @@
         <span v-else-if="confirmation === 'success'"><i class="mdi mdi-check-circle-outline"></i> success</span>
         <span v-else-if="confirmation === 'fail'"><i class="mdi mdi-close-circle-outline"></i> fail</span>
       </div>
+      <div class="dp-flex jtf-ct-center w-100pct">
+        <span>{{message}}</span>
+      </div>
     </section>
     <footer class="modal-card-foot dp-flex jtf-ct-center">
       <a :href="`https://kovan.etherscan.io/tx/${hash}`" target="_blank" class="button is-primary">View Transaction</a>
@@ -36,6 +39,10 @@ export default {
     confirmation: {
       type: String,
       required: true
+    },
+    message: {
+      type: String,
+      default: ''
     }
   }
 }

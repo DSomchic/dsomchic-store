@@ -12,6 +12,7 @@
     "bignumber.js": "^7.2.1",
     "buefy": "^0.6.6",
     "mdi": "^2.2.43",
+    "qrcode-generator": "^1.4.0",
     "vue": "^2.5.17",
     "vue-clipboard2": "^0.2.1",
     "vue-qrcode-reader": "^1.0.1",

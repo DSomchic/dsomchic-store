@@ -21,17 +21,41 @@
       </span>
       <span v-else class="navbar-item title is-6 cl-white cs-pointer"  >Loading...</span>
     </div>
-    <div class="navbar-end pd-t-15px pd-r-15px" @click="openEtherScan">
-      <b-icon icon="open-in-new" type="is-primary"></b-icon>
+    <div class="navbar-end pd-t-15px pd-r-15px" >
+      <div @click="viewQR = true">
+        <b-icon class="cs-pointer" icon="qrcode" type="is-info" ></b-icon>
+      </div>
+      <div @click="openEtherScan">
+        <b-icon class="cs-pointer" icon="open-in-new" type="is-primary"></b-icon>
+      </div>
     </div>
+    <b-modal :active.sync="viewQR" @close="viewQR = false">
+      <div class="modal-card">
+        <div class="modal-card-body">
+          <div class="w-100pct dp-flex f-drt-column al-it-center">
+            <qrcode :message="address"/>
+            <span class="pd-t-10px">{{address}}</span>
+          </div>
+        </div>
+      </div>
+    </b-modal>
   </nav>
 </template>
 
 <script>
+import qrcode from './qrcode'
 export default {
+  components: {
+    qrcode
+  },
   props: {
     address: {
       type: String
+    }
+  },
+  data () {
+    return {
+      viewQR: false
     }
   },
   methods: {

@@ -30,13 +30,13 @@
                           </div>
                         </div>
                       </div>
-                    </div>  
+                    </div>
                   </div>
                   <div class="field">
                       <div class="control">
                         <div class="pd-t-100px">
-                          <label class="label">Total Price</label>
-                          <input class="input is-large" v-model="totalPrice" placeholder="Enter total price">
+                          <label class="label">Net Price</label>
+                          <input class="input is-large" v-model="totalPrice" placeholder="Enter net price">
                         </div>
                       </div>
                   </div>
@@ -55,7 +55,7 @@
       </div>
     </section>
     <b-modal :active.sync="isShowTransaction" @close="hideTradeModal">
-      <modalTrade :hash="hash" :confirmation="confirmation"/>
+      <modalTrade :hash="hash" :confirmation="confirmation" :message="'20 Bath = 1 SOMC'"/>
     </b-modal>
   </div>
 </template>
@@ -72,7 +72,7 @@ export default {
   props: {
     somcBalance: {
       type: [String, Number]
-    },
+    }
   },
   data () {
     return {

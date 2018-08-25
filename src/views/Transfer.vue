@@ -1,6 +1,6 @@
 <template>
   <div class="transfer">
-    <section class="hero is-fullheight bg-cl-black">
+    <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
           <div class="column is-8 is-offset-2">

@@ -1,6 +1,6 @@
 <template>
   <div class="transfer">
-    <section class="hero is-fullheight bg-cl-black">
+    <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
           <div class="column is-8 is-offset-2">
@@ -18,9 +18,26 @@
                 </div>
                 <div class="column">
                   <div class="field">
+                    <div class="control">
+                      <div class="f-left pd-t-15px w-100pct">
+                        <div class="f-left w-100pct shadow pd-10px bd-rd-4px">
+                          <div class="f-left mg-r-10px">
+                            <img src="../assets/somc.png" width="50px">
+                          </div>
+                          <div class="f-left">
+                            <div class="f-w-bold">SOMC</div>
+                            <div class="f-w-bold">{{parseFloat(somcBalance).toFixed(8)}} SOMC</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
+                  <div class="field">
                       <div class="control">
-                        <label class="label">Total Price</label>
-                        <input class="input is-large" v-model="totalPrice" placeholder="Enter total price">
+                        <div class="pd-t-100px">
+                          <label class="label">Total Price</label>
+                          <input class="input is-large" v-model="totalPrice" placeholder="Enter total price">
+                        </div>
                       </div>
                   </div>
                   <div class="field">
@@ -51,6 +68,11 @@ export default {
   components: {
     QrcodeReader,
     modalTrade
+  },
+  props: {
+    somcBalance: {
+      type: [String, Number]
+    },
   },
   data () {
     return {
@@ -110,7 +132,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 80vh;
+.shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 </style>

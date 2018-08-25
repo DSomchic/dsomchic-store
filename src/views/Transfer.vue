@@ -1,6 +1,5 @@
 <template>
   <div class="transfer">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="hero-body bg-cl-black">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
@@ -22,19 +21,17 @@
             </form>
           </div>
         </div>
-      </div> 
-    </div>   
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'transfer',
   components: {
-    HelloWorld
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar navbar--black pd-10px" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <router-link to="/" class="navbar-item">
         <img alt="Vue logo" src="@/assets/logo.png">
         <h1 class="title cl-white">Somchoic</h1>
-      </a>
+      </router-link>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>

@@ -16,14 +16,13 @@ const state = {
 }
 
 const getters = {
-
+  getWeb3: state => state.web3
 }
 
 const mutations = {
-  registerWeb3Instance (state, payload) {
-    console.log('registerWeb3instance Mutation being executed', payload)
+  SET_WEB3 (state, payload) {
+    console.log('SET_WEB3 Mutation being executed', payload)
     let result = payload
-    console.log('result:', result)
     let web3Copy = state.web3
     web3Copy.coinbase = result.coinbase
     web3Copy.networkId = result.networkId
@@ -35,11 +34,11 @@ const mutations = {
 }
 
 const actions = {
-  registerWeb3 ({ commit }) {
+  registerWeb3: ({ commit }) => {
     console.log('registerWeb3 Action being executed')
     getWeb3.then(result => {
-      console.log('committing result to registerWeb3Instance mutation')
-      commit('registerWeb3Instance', result)
+      console.log('committing result to SET_WEB3 mutation')
+      commit('SET_WEB3', result)
     }).catch(e => {
       console.log('error in action registerWeb3', e)
     })

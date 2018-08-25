@@ -10,7 +10,7 @@
       <router-link to="/transfer" class="navbar-item title is-5 is-marginless">Transfer</router-link>
       <router-link to="/trade" class="navbar-item title is-5">Exchange</router-link>
     </div>
-    <div class="navbar-start hover">
+    <div class="navbar-start">
       <span v-if="address"
         class="navbar-item title is-6 cl-white cs-pointer"
         v-clipboard:copy="address"
@@ -21,8 +21,8 @@
       </span>
       <span v-else class="navbar-item title is-6 cl-white cs-pointer"  >Loading...</span>
     </div>
-    <div class="navbar-end">
-      <!-- <span class="navbar-item title cl-white">{{parseFloat(balance).toFixed(3)}} SOMC</span> -->
+    <div class="navbar-end pd-t-15px pd-r-15px" @click="openEtherScan">
+      <b-icon icon="open-in-new" type="is-primary"></b-icon>
     </div>
   </nav>
 </template>
@@ -35,15 +35,29 @@ export default {
     }
   },
   methods: {
+    async getTokenBalnce () {
+      const tokenBalance = await this.$contract.methods.balanceOf(this.userAddr).call()
+      this.somcTokenBalance = bn.toHumanNumber(tokenBalance)
+    },
     onCopy: function (e) {
       this.$toast.open('You just copied: ' + e.text)
     },
     onError: function (e) {
       this.$toast.open('Failed to copy texts')
+    },
+    openEtherScan () {
+      const url = `https://kovan.etherscan.io/address/${this.userAddr}`
+      const win = window.open(url, '_blank')
+      win.focus()
     }
   },
   created () {
-    this.message = this.$web3.eth.defaultAccount
+    this.message = this.address
+  },
+  async mounted () {
+    const accounts = await this.$web3.eth.getAccounts()
+    this.userAddr = accounts[0]
+    await this.getTokenBalnce()
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar--black pd-10px" role="navigation" aria-label="main navigation" >
     <div class="navbar-brand">
-      <a class="navbar-item" href="transfer">
+      <a class="navbar-item" href="/">
         <img alt="Vue logo" src="@/assets/logo.png">
         <h1 class="title cl-white">Somchoic</h1>
       </a>

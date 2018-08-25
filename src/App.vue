@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <base-navbar :balance="balance"></base-navbar>
-    <!-- <button class="button" @click="buyToken(0.001)">buy 0.001eth</button> -->
     <router-view @getBalance="getBalance"/>
   </div>
 </template>

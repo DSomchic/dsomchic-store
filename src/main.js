@@ -13,7 +13,13 @@ Vue.use(Buefy)
 
 Vue.component('Spinner', Spinner)
 
-const web3 = new Web3(Web3.givenProvider)
+let web3 = null
+if (typeof window.web3 !== 'undefined') {
+  web3 = new Web3(window.web3.currentProvider)
+} else {
+  console.log('Please login Metamask.')
+}
+
 Vue.prototype['$web3'] = web3
 Vue.prototype['$contract'] = new web3.eth.Contract(contract.abi, contract.address)
 

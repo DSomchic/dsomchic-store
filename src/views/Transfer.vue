@@ -32,14 +32,14 @@ export default {
   data () {
     return {
       addressReceive: '',
-      amountSOMC: '',
+      amountSOMC: ''
     }
   },
   methods: {
     transferToken (address, amount) {
       const value = bn.toWei(amount)
       this.$contract.methods.transfer(address, value).send({ from: this.$web3.eth.defaultAccount })
-    },
+    }
   }
 }
 </script>

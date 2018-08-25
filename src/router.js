@@ -10,7 +10,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'transfer',
+      name: 'root',
       component: Transfer
     },
     {

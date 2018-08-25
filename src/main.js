@@ -8,11 +8,8 @@ import 'buefy/lib/buefy.css'
 import 'begeta/css/begeta.min.css'
 import 'mdi/css/materialdesignicons.min.css'
 import contract from './contracts'
-<<<<<<< HEAD
-
-=======
 import Spinner from 'vue-spinkit'
->>>>>>> 42353d8b81e2fa7b5e490d1de269f65e3dbf76ae
+
 Vue.config.productionTip = false
 Vue.use(Buefy)
 Vue.use(VueClipboard)

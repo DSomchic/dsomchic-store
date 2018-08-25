@@ -11,14 +11,15 @@
       <router-link to="/trade" class="navbar-item title is-5">Trade</router-link>
     </div>
     <div class="navbar-start hover">
-      <span 
+      <span v-if="address"
         class="navbar-item title is-6 cl-white cs-pointer"
-        v-clipboard:copy="message"
+        v-clipboard:copy="address"
         v-clipboard:success="onCopy"
         v-clipboard:error="onError"
       >
-        {{message}}
+        {{address}}
       </span>
+      <span v-else class="navbar-item title is-6 cl-white cs-pointer"  >Loading...</span>
     </div>
     <div class="navbar-end">
       <span class="navbar-item title cl-white">{{parseFloat(balance).toFixed(3)}} SOMC</span>
@@ -31,11 +32,9 @@ export default {
   props: {
     balance: {
       type: [String, Number]
-    }
-  },
-  data () {
-    return {
-      message: this.$web3.eth.defaultAccount
+    },
+    address: {
+      type: String
     }
   },
   methods: {
@@ -45,6 +44,9 @@ export default {
     onError: function (e) {
       this.$toast.open('Failed to copy texts')
     }
+  },
+  created () {
+    this.message = this.$web3.eth.defaultAccount
   }
 }
 </script>

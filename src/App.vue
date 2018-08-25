@@ -22,6 +22,7 @@ export default {
       const accouts = await this.$web3.eth.getAccounts()
       this.$web3.eth.defaultAccount = accouts[0]
       const balance = await this.$contract.methods.balanceOf(this.$web3.eth.defaultAccount).call()
+      console.log(balance, bn.toHumanNumber(balance))
       this.balance = bn.toHumanNumber(balance)
     } catch (err) {
       console.log(err)

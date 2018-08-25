@@ -11,7 +11,7 @@
       <router-link to="/trade" class="navbar-item title is-5">Trade</router-link>
     </div>
     <div class="navbar-end">
-      <span class="navbar-item title cl-white">{{balance}} SC</span>
+      <span class="navbar-item title cl-white">{{parseFloat(balance).toFixed(3)}} SOMC</span>
     </div>
   </nav>
 </template>

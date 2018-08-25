@@ -25,16 +25,16 @@
                   <div class="field">
                       <div class="control">
                         <label class="label">SOMC you spend</label>
-                        <input class="input is-large" placeholder="Amount to spend" autofocus="">
+                        <input class="input is-large" v-model.number="sellSOMC" placeholder="Amount to spend" autofocus="">
                       </div>
                   </div>
                   <div class="field">
                       <div class="control">
                         <label class="label">ETH you receive</label>
-                        <input class="input is-large" disabled placeholder="Amount you receive">
+                        <input class="input is-large" disabled v-model="receiveETH" placeholder="Amount you receive">
                       </div>
                   </div>
-                  <button class="button is-block is-info is-large is-fullwidth">SELL</button>
+                  <button class="button is-block is-info is-large is-fullwidth" @click="sellToken(sellSOMC)" >SELL</button>
                 </b-tab-item>
               </b-tabs>
             </div>
@@ -50,18 +50,26 @@ import bn from '../utils'
 export default {
   data () {
     return {
-      buySOMC: ''
+      buySOMC: '',
+      sellSOMC: ''
     }
   },
   computed: {
     receiveSOMC () {
       return this.buySOMC * 10000
+    },
+    receiveETH () {
+      return this.sellSOMC / 10000
     }
   },
   methods: {
     buyToken (amount) {
       const value = bn.toWei(amount)
       this.$contract.methods.buyToken().send({ from: this.$web3.eth.defaultAccount, value })
+    },
+    sellToken (amount) {
+      const value = bn.toWei(amount)
+      this.$contract.methods.sellToken(value).send({ from: this.$web3.eth.defaultAccount })
     }
   }
 }

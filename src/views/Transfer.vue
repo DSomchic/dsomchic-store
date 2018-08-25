@@ -32,8 +32,7 @@
 </script>
 
 <style scoped>
-body {
-  color: #2c3e50;
+.container {
+  height: 80vh;
 }
-
 </style>

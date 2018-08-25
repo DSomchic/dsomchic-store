@@ -48,3 +48,9 @@
     </section>
   </div>
 </template>
+
+<style scoped>
+.container {
+  height: 80vh;
+}
+</style>

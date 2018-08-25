@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <div class="top-left" id="nav-left">
-        <img alt="Vue logo" width="50" height="50" src="./assets/logo.png">
-        <router-link to="/transfer">Transfer</router-link> |
-        <router-link to="/trade">Trade</router-link>
-      </div>
-    </div>
+    <base-navbar></base-navbar>
     <router-view/>
   </div>
 </template>
+
+<script>
+import BaseNavbar from '@/components/BaseNavbar.vue'
+export default {
+  components: { BaseNavbar }
+}
+</script>
 
 <style>
 #app {
@@ -35,10 +36,6 @@
 
 #nav-left {
   left: 0;
-}
-
-#nav-right {
-  
 }
 
 </style>

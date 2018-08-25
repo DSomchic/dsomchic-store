@@ -61,7 +61,7 @@ export default {
     },
     somcBalance: {
       type: [String, Number]
-    },
+    }
   },
   data () {
     return {
@@ -122,8 +122,8 @@ export default {
       this.$contract.methods.sellToken(value).send({ from: this.$web3.eth.defaultAccount })
     },
     switchToken () {
-      const oldTokenETH = { ...this.tokenETH, amount:'' }
-      this.tokenETH = { ...this.tokenSOMC, amount:'' }
+      const oldTokenETH = { ...this.tokenETH, amount: '' }
+      this.tokenETH = { ...this.tokenSOMC, amount: '' }
       this.tokenSOMC = oldTokenETH
     }
   }

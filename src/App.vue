@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <div id="nav-left">
+      <div class="top-left" id="nav-left">
         <img alt="Vue logo" width="50" height="50" src="./assets/logo.png">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/">Tranfer</router-link> |
+        <router-link to="/about">Trade</router-link>
       </div>
     </div>
     <router-view/>

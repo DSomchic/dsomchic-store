@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <div class="hero-body">
+  <div class="trade">
+    <div class="hero-body bg-cl-black">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
           <div class="box">

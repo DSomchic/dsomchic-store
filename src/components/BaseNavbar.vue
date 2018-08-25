@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar--black pd-10px" role="navigation" aria-label="main navigation">
+  <nav class="navbar navbar--black pd-10px" role="navigation" aria-label="main navigation" >
     <div class="navbar-brand">
       <router-link to="/" class="navbar-item">
         <img alt="Vue logo" src="@/assets/logo.png">
@@ -12,8 +12,7 @@
       </a>
     </div>
     <div class="navbar-end">
-      <router-link to="/transfer" class="navbar-item">Transfer</router-link>
-      <router-link to="/trade" class="navbar-item">Trade</router-link>
+      <span class="navbar-item title cl-white">0 SC</span>
     </div>
   </nav>
 </template>

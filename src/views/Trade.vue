@@ -1,50 +1,49 @@
 <template>
-  <div class="trad">
-    <section class="hero is-fullheight bg-cl-black">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <div class="column is-4 is-offset-4">
-            <div class="box">
-              <b-tabs type="is-toggle" position="is-centered">
-                <b-tab-item label="Buy SOMC">
-                  <div class="field">
-                      <div class="control">
-                        <label class="label">ETH you spend</label>
-                        <input class="input is-large" v-model.number="buySOMC" placeholder="Amount to spend">
-                      </div>
-                  </div>
-                  <div class="field">
-                      <div class="control">
-                        <label class="label">SOMC you receive</label>
-                        <input class="input is-large" disabled v-model="receiveSOMC" placeholder="Amount you receive">
-                      </div>
-                  </div>
-                  <button class="button is-block is-info is-large is-fullwidth" @click="buyToken(buySOMC)">BUY</button>
-                </b-tab-item>
-                <b-tab-item label="Sell SOMC">
-                  <div class="field">
-                      <div class="control">
-                        <label class="label">SOMC you spend</label>
-                        <input class="input is-large" v-model.number="sellSOMC" placeholder="Amount to spend" autofocus="">
-                      </div>
-                  </div>
-                  <div class="field">
-                      <div class="control">
-                        <label class="label">ETH you receive</label>
-                        <input class="input is-large" disabled v-model="receiveETH" placeholder="Amount you receive">
-                      </div>
-                  </div>
-                  <button class="button is-block is-info is-large is-fullwidth" @click="sellToken(sellSOMC)" >SELL</button>
-                </b-tab-item>
-              </b-tabs>
-            </div>
+  <div class="f-left w-100pct pd-20px">
+    <div class="f-left w-100pct title">
+      Exchange
+    </div>
+    <div class="f-left w-100pct pd-10px">
+      <div class="f-left w-100pct">
+        <div class="f-left w-100pct shadow pd-10px bd-rd-4px">
+          <div class="f-left mg-r-10px">
+            <img v-if="tokenETH.code === 'ETH'" src="../assets/eth.png" width="50px">
+            <img v-if="tokenETH.code === 'SOMC'" src="../assets/somc.png" width="50px">
+          </div>
+          <div class="f-left">
+            <div class="f-w-bold">{{ tokenETH.name }}</div>
+            <div class="f-w-bold">{{parseFloat(tokenETH.balance).toFixed(8)}} {{ tokenETH.code }}</div>
           </div>
         </div>
       </div>
-    </section>
-    <b-modal :active.sync="isShowTransaction" @close="hideTradeModal">
-      <modalTrade :hash="hash" :confirmation="confirmation"/>
-    </b-modal>
+      <div class="f-left w-100pct mg-t-10px">
+        <b-input v-if="tokenETH.code === 'ETH'" v-model="tokenETH.amount" placeholder="Amount"></b-input>
+        <b-input v-if="tokenETH.code === 'SOMC'" v-model="tokenSOMC.amount" placeholder="Amount"></b-input>
+      </div>
+      <div class="f-left w-100pct pd-20px t-al-center">
+        <img src="../assets/swap.png" width="50px" class="cs-pointer" @click="switchToken()">
+      </div>
+      <div class="f-left w-100pct">
+        <div class="f-left w-100pct shadow pd-10px bd-rd-4px">
+          <div class="f-left mg-r-10px">
+            <img v-if="tokenSOMC.code === 'ETH'" src="../assets/eth.png" width="50px">
+            <img v-if="tokenSOMC.code === 'SOMC'" src="../assets/somc.png" width="50px">
+          </div>
+          <div class="f-left">
+            <div class="f-w-bold">{{ tokenSOMC.name }}</div>
+            <div class="f-w-bold">{{parseFloat(tokenSOMC.balance).toFixed(8)}} {{ tokenSOMC.code }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="f-left w-100pct mg-t-10px">
+        <b-input v-if="tokenETH.code === 'ETH'" :value="getReceiveSOMC" placeholder="Amount" disabled></b-input>
+        <b-input v-if="tokenETH.code === 'SOMC'" :value="getReceiveETH" placeholder="Amount" disabled></b-input>
+      </div>
+    </div>
+    <div class="f-left w-100pct pd-10px mg-t-10px">
+      <div v-if="tokenETH.code === 'ETH'" class="button is-primary f-left w-100pct h-50px f-s-21px" @click="buyToken(tokenETH.amount)">BUY</div>
+      <div v-if="tokenETH.code === 'SOMC'" class="button is-primary f-left w-100pct h-50px f-s-21px" @click="sellToken(tokenSOMC.amount)">SELL</div>
+    </div>
   </div>
 </template>
 
@@ -52,24 +51,43 @@
 import modalTrade from '../components/modalTrade'
 import bn from '../utils'
 export default {
+  name: 'Transfer',
   components: {
     modalTrade
   },
+  props: {
+    ethBalance: {
+      type: [String, Number]
+    },
+    somcBalance: {
+      type: [String, Number]
+    },
+  },
   data () {
     return {
-      buySOMC: '0.001',
-      sellSOMC: '',
+      tokenETH: {
+        name: 'Ethereum',
+        code: 'ETH',
+        balance: this.ethBalance,
+        amount: ''
+      },
+      tokenSOMC: {
+        name: 'SOMC',
+        code: 'SOMC',
+        balance: this.somcBalance,
+        amount: ''
+      },
       isShowTransaction: false,
       confirmation: '',
       hash: ''
     }
   },
   computed: {
-    receiveSOMC () {
-      return this.buySOMC * 10000
+    getReceiveSOMC () {
+      return this.tokenETH.amount * 10000
     },
-    receiveETH () {
-      return this.sellSOMC / 10000
+    getReceiveETH () {
+      return this.tokenSOMC.amount / 10000
     }
   },
   methods: {
@@ -102,13 +120,18 @@ export default {
     sellToken (amount) {
       const value = bn.toWei(amount)
       this.$contract.methods.sellToken(value).send({ from: this.$web3.eth.defaultAccount })
+    },
+    switchToken () {
+      const oldTokenETH = { ...this.tokenETH, amount:'' }
+      this.tokenETH = { ...this.tokenSOMC, amount:'' }
+      this.tokenSOMC = oldTokenETH
     }
   }
 }
 </script>
 
 <style scoped>
-.container {
-  height: 80vh;
+.shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 </style>

@@ -69,7 +69,7 @@ export default {
     },
     somcBalance: {
       type: [String, Number]
-    }
+    },
   },
   watch: {
     ethBalance (newVal, oldVal) {
@@ -88,13 +88,13 @@ export default {
       tokenETH: {
         name: 'Ethereum',
         code: 'ETH',
-        balance: '',
+        balance: this.ethBalance,
         amount: ''
       },
       tokenSOMC: {
         name: 'SOMC',
         code: 'SOMC',
-        balance: '',
+        balance: this.somcBalance,
         amount: ''
       },
       isShowTransaction: false,
@@ -142,8 +142,8 @@ export default {
       this.$contract.methods.sellToken(value).send({ from: this.$web3.eth.defaultAccount })
     },
     switchToken () {
-      const oldTokenETH = { ...this.tokenETH, amount: '' }
-      this.tokenETH = { ...this.tokenSOMC, amount: '' }
+      const oldTokenETH = { ...this.tokenETH, amount:'' }
+      this.tokenETH = { ...this.tokenSOMC, amount:'' }
       this.tokenSOMC = oldTokenETH
     }
   }

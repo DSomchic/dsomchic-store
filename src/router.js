@@ -9,6 +9,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/',
+      name: 'transfer',
+      component: Transfer
+    },
+    {
       path: '/transfer',
       name: 'transfer',
       component: Transfer

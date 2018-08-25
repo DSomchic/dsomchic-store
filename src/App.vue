@@ -2,7 +2,7 @@
   <div id="app">
     <base-navbar :balance="balance"></base-navbar>
     <!-- <button class="button" @click="buyToken(0.001)">buy 0.001eth</button> -->
-    <router-view/>
+    <router-view @getBalance="getBalance"/>
   </div>
 </template>
 
@@ -18,14 +18,19 @@ export default {
     }
   },
   async created () {
-    try {
-      const accouts = await this.$web3.eth.getAccounts()
-      this.$web3.eth.defaultAccount = accouts[0]
-      const balance = await this.$contract.methods.balanceOf(this.$web3.eth.defaultAccount).call()
-      console.log(balance, bn.toHumanNumber(balance))
-      this.balance = bn.toHumanNumber(balance)
-    } catch (err) {
-      console.log(err)
+    this.getBalance()
+  },
+  methods: {
+    async getBalance () {
+      try {
+        const accouts = await this.$web3.eth.getAccounts()
+        this.$web3.eth.defaultAccount = accouts[0]
+        const balance = await this.$contract.methods.balanceOf(this.$web3.eth.defaultAccount).call()
+        console.log(balance, bn.toHumanNumber(balance))
+        this.balance = bn.toHumanNumber(balance)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }

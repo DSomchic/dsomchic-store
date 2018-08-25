@@ -11,8 +11,10 @@
     "begeta": "^0.1.19",
     "bignumber.js": "^7.2.1",
     "buefy": "^0.6.6",
+    "mdi": "^2.2.43",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
+    "vue-spinkit": "^1.4.1",
     "vuex": "^3.0.1",
     "web3": "^1.0.0-beta.35",
     "websocket": "^1.0.26"

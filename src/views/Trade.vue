@@ -71,18 +71,30 @@ export default {
       type: [String, Number]
     },
   },
+  watch: {
+    ethBalance (newVal, oldVal) {
+      if (oldVal === '' && this.tokenETH.balance === '') {
+        this.tokenETH.balance = newVal
+      }
+    },
+    somcBalance (newVal, oldVal) {
+      if (oldVal === '' && this.tokenSOMC.balance === '') {
+        this.tokenSOMC.balance = newVal
+      }
+    }
+  },
   data () {
     return {
       tokenETH: {
         name: 'Ethereum',
         code: 'ETH',
-        balance: this.ethBalance,
+        balance: '',
         amount: ''
       },
       tokenSOMC: {
         name: 'SOMC',
         code: 'SOMC',
-        balance: this.somcBalance,
+        balance: '',
         amount: ''
       },
       isShowTransaction: false,

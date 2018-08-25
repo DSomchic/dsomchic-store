@@ -28,17 +28,18 @@
 </template>
 
 <script>
+import bn from '../utils'
 export default {
   props: {
     address: {
       type: String
     }
   },
+  created () {
+    this.message = this.address
+    this.$emit('getBalance')
+  },
   methods: {
-    async getTokenBalnce () {
-      const tokenBalance = await this.$contract.methods.balanceOf(this.userAddr).call()
-      this.somcTokenBalance = bn.toHumanNumber(tokenBalance)
-    },
     onCopy: function (e) {
       this.$toast.open('You just copied: ' + e.text)
     },
@@ -46,19 +47,12 @@ export default {
       this.$toast.open('Failed to copy texts')
     },
     openEtherScan () {
-      const url = `https://kovan.etherscan.io/address/${this.userAddr}`
+      this.$emit('getBalance')
+      const url = `https://kovan.etherscan.io/address/${this.address}`
       const win = window.open(url, '_blank')
-      win.focus()
+      win.focus() 
     }
   },
-  created () {
-    this.message = this.address
-  },
-  async mounted () {
-    const accounts = await this.$web3.eth.getAccounts()
-    this.userAddr = accounts[0]
-    await this.getTokenBalnce()
-  }
 }
 </script>
 

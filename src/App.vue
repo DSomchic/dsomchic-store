@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <base-navbar :address="accountAddress"></base-navbar>
+    <base-navbar :address="accountAddress" @getBalance="getTokenBalance"></base-navbar>
     <router-view :ethBalance="ethBalance" :somcBalance="somcBalance" @getBalance="getTokenBalance"/>
   </div>
 </template>
@@ -18,12 +18,6 @@ export default {
       accountAddress: ''
     }
   },
-  async mounted () {
-    this.accountAddress = await this.$web3.eth.getAccounts()
-    this.accountAddress = this.accountAddress[0]
-    this.ethBalance = bn.toHumanNumber(await this.$web3.eth.getBalance(this.accountAddress))
-    this.getTokenBalance()
-  },
   async created () {
     this.getTokenBalance()
   },
@@ -32,14 +26,14 @@ export default {
       try {
         const accouts = await this.$web3.eth.getAccounts()
         this.$web3.eth.defaultAccount = accouts[0]
-        this.address = this.$web3.eth.defaultAccount
+        this.accountAddress = this.$web3.eth.defaultAccount
         const balance = await this.$contract.methods.balanceOf(this.$web3.eth.defaultAccount).call()
-        console.log(balance, bn.toHumanNumber(balance))
+        this.ethBalance = bn.toHumanNumber(await this.$web3.eth.getBalance(this.accountAddress))
         this.somcBalance = bn.toHumanNumber(balance)
       } catch (err) {
         console.log(err)
       }
     }
-  }
+  },
 }
 </script>

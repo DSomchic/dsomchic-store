@@ -26,12 +26,6 @@ export default {
     } catch (err) {
       console.log(err)
     }
-  },
-  // methods: {
-  //   buyToken (amount) {
-  //     const value = bn.toWei(amount)
-  //     this.$contract.methods.buyToken().send({ from: this.$web3.eth.defaultAccount, value })
-  //   }
-  // }
+  }
 }
 </script>

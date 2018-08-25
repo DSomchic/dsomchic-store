@@ -3,8 +3,8 @@
     <div id="nav">
       <div class="top-left" id="nav-left">
         <img alt="Vue logo" width="50" height="50" src="./assets/logo.png">
-        <router-link to="/">Tranfer</router-link> |
-        <router-link to="/about">Trade</router-link>
+        <router-link to="/transfer">Transfer</router-link> |
+        <router-link to="/trade">Trade</router-link>
       </div>
     </div>
     <router-view/>

@@ -51,12 +51,15 @@
         </div>
         </div>
       </div>
+    <div class="dp-flex jtf-ct-center w-100pct">
+      <span class="has-text-centered">1 ETH = 10,000 SOMC</span>
+    </div>
     <div class="f-left w-100pct pd-10px mg-t-10px">
       <div v-if="tokenETH.code === 'ETH'" class="button is-primary f-left w-100pct h-50px f-s-21px" @click="buyToken(tokenETH.amount)">BUY</div>
       <div v-if="tokenETH.code === 'SOMC'" class="button is-primary f-left w-100pct h-50px f-s-21px" @click="sellToken(tokenSOMC.amount)">SELL</div>
     </div>
     <b-modal :active.sync="isShowTransaction" @close="hideTradeModal">
-      <modalTrade :hash="hash" :confirmation="confirmation" :message="'1 ETH = 10,000 SOMC'"/>
+      <modalTrade :hash="hash" :confirmation="confirmation"/>
     </b-modal>
   </div>
 </template>

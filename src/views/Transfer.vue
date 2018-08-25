@@ -46,6 +46,9 @@
                         <input disabled class="input is-large" v-model="amountSOMC" placeholder="Enter amount to transfer">
                       </div>
                   </div>
+                  <div class="field">
+                    <span>20 Bath = 1 SOMC</span>
+                  </div>
                 </div>
               </div>
               <button class="button is-block is-info is-large is-fullwidth" @click="transferToken(addressReceive, amountSOMC)">TRANSFER</button>
@@ -55,7 +58,7 @@
       </div>
     </section>
     <b-modal :active.sync="isShowTransaction" @close="hideTradeModal">
-      <modalTrade :hash="hash" :confirmation="confirmation" :message="'20 Bath = 1 SOMC'"/>
+      <modalTrade :hash="hash" :confirmation="confirmation"/>
     </b-modal>
   </div>
 </template>
